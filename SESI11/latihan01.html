@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membaca Data JSon o1</title>
+    <style>
+        table, th, td{
+            border:solid 1px;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+
+    Nama : <span id="txNAMA"></span> <br>
+    Alamat : <span id="txALAMAT"></span> <br>
+    Tanggal Lahir : <span id="txTGL"></span> <br>
+    Nomor Telepon : <span id="txNO"></span> <br>
+    Hobi : <span id="txHOBI"></span> <br>
+    <hr>
+
+
+    <div id="xdata"></div>
+
+    <script>
+        const jsHTTP = new XMLHttpRequest(); //SEBUAH OBJEK YANG DIGUNAKAN UNTUK MEMBACA DATA JSON DAN XML
+        jsHTTP.open("GET", "http://localhost/SESI11/latihan01.php"); //("metode", "url") MEMBUKA DATA DENGAN METODE GET
+        jsHTTP.send(); //kirim
+
+        //menunggu repon setelah request
+        jsHTTP.onload = function(){
+            const data = JSON.parse(this.responseText);
+            console.log(data);
+            let hasil = "<h3> List Data</h3>"
+            hasil+="<table><tr><th>#</th><th>Nama</th><th>Alamat</th><th>Tanggal Lahir</th><th>Nomor Telepon</th><th>Hobi</th></tr>"
+            let no = 1;
+            for(let i=0;i<data.length;i++){
+                hasil +="<tr>";
+                hasil +="   <td>"+no+"</td>";
+                hasil +="    <td>"+data[i].nama+"</td>";
+                hasil +="    <td>"+data[i].alamat+"</td>";
+                hasil +="    <td>"+data[i].tgl_lahir+"</td>";
+                hasil +="   <td>"+data[i].no_tlp+"</td>";
+                hasil +="    <td>"+data[i].hobi+"</td>";
+                hasil +="</tr>";
+                no++;
+                }
+                hasil +="</table>";
+            document.getElementById("xdata").innerHTML = hasil; 
+            } 
+    </script>
+    
+</body>
+</html>
