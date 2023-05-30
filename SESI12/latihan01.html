@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan 01</title>
+    <style>
+        table, th, td{
+            border:solid 1px;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div id="data"></div>
+
+    <script>
+        const jsHTTP = new XMLHttpRequest();
+        jsHTTP.open("GET", "https://webpro.ptov.my.id/api/curduser.php?aksi=get");
+        jsHTTP.send();
+
+        jsHTTP.onload = function(){
+            const data = JSON.parse(this.responseText);
+            console.log(data);
+            let hasil = "<h3> List Data</h3>"
+            hasil+="<table><tr><th>#</th><th>Nama</th><th>Email</th><th>Username</th><th>Action</th></tr>"
+            let no = 1;
+            for(let i=0;i<data.isi.length;i++){
+                        hasil +="<tr>";
+                        hasil +="   <td>"+no+"</td>";
+                        hasil +="    <td>"+data.isi[i][0]+"</td>";
+                        hasil +="    <td>"+data.isi[i][1]+"</td>";
+                        hasil +="    <td>"+data.isi[i][2]+"</td>";
+                        hasil +='    <td><a href="latihan01-edit.html?id='+ data.isi[i][3] +'">Edit</a>';
+                        hasil +='   <a href="latihan01-del.html?id='+ data.isi[i][3] +'">Hapus</a></td>';
+                        hasil +="</tr>";
+                        no++;
+                
+            };
+                hasil +="</table>";
+            document.getElementById("data").innerHTML = hasil; 
+            } 
+    </script>
+</body>
+</html>
