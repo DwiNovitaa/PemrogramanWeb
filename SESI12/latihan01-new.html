@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan Json Edit Data</title>
+    <title>Input Data</title>
 </head>
 <body>
+    <form>
     <div>
         Nama
         <input type="text" id="txNAMA">
@@ -28,48 +29,33 @@
         <input type="password" id="txPASS2">
     </div>
     <div>
-     <button type="Button" id="cmdupdate" onclick="UpdateData()">Update</button>
+     <button type="Button" onclick="StoreData()">Buat Data</button>
     </div>
-    
+    </form>
+
 <script>
-    const qstring = window.location.search;
-
-    const pr = new URLSearchParams(qstring);
-    let prid = pr.get("id"); //mengambil id 
-
-    const jsHTTP = new XMLHttpRequest();
-    let cx = "https://webpro.ptov.my.id/api/curduser.php?aksi=get&q="+prid;
-    //console.log(cx);
-    jsHTTP.open("GET",cx);
-    jsHTTP.send();
-    jsHTTP.onload = function(){
-        const data = JSON.parse(this.responseText);
-        document.getElementById("txNAMA").value = data.isi[0][0];
-        document.getElementById("txEMAIL").value = data.isi[0][1];
-        document.getElementById("txUSER").value = data.isi[0][2];
-    };
-    
-    function UpdateData(){
-        //alert("Tombol Update Data di klik");
+    function StoreData(){
         let nm = document.getElementById("txNAMA").value;
         let ema = document.getElementById("txEMAIL").value;
         let usr = document.getElementById("txUSER").value;
         let p1 = document.getElementById("txPASS1").value;
         let p2 = document.getElementById("txPASS2").value;
-        let params = "nama="+nm+"&email="+ema+"&username="+usr+"&pass1="+p1+"&pass2="+p2+"&iduser="+prid;
-        console.log(params);
-        let cx = "https://webpro.ptov.my.id/api/curduser.php?aksi=update";
+        let params = "nama="+nm+"&email="+ema+"&username="+usr+"&pass1="+p1+"&pass2="+p2;
+        let cx = "https://webpro.ptov.my.id/api/curduser.php?aksi=store";
+
+        const jsHTTP = new XMLHttpRequest();
         jsHTTP.open("POST",cx,true);
         jsHTTP.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         jsHTTP.send(params);
-        //console.log("Isi Parameter: "+params);
 
         jsHTTP.onload = function(){
             const data = JSON.parse(this.responseText);
-            console.log(data);
+            //console.log(data);
+            if(data.error==0){
+                window.location.replace="latihan01.html";
+            }
         }
     }
-    
 </script>
 
 </body>
