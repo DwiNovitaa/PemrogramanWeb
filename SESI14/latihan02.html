@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan jQuery 02</title>
+</head>
+<body>
+    
+
+    <h3>Judul Form</h3>
+
+
+    <div id="navigasi">
+        <button type="button" class="persegi">Hitung Luas Persegi</button>
+        <button type="button" class="segi3">Hitung Luas Segitiga</button>
+    </div>
+    <div id="hitungluaspersegi">
+        <div>
+            Nilai Panjang
+            <input type="number" class="pj">
+        </div>
+        <div>
+            Nilai Lebar
+            <input type="number" class="lb">
+        </div>
+        <div>
+            <button type="button" class="cmdLP">Hitung Luas</button>
+        </div>
+    </div>
+    <div id="hitungluassegi3">
+    <div>
+        Nilai Alas
+        <input type="number" class="al">
+    </div>
+    <div>
+        Nilai Tinggi
+        <input type="number" class="tg">
+    </div>
+    <div>
+        <button type="button" class="cmdLS">Hitung Luas</button>
+    </div>
+    </div>
+    <div id="hasil">Hasilnya</div>
+
+    <script src="jquery-3.7.0.min.js"></script>
+    <script>
+        $(function(){
+            $("#hasil").hide();
+            $("#hitungluassegi3").hide();
+            $("#hitungluaspersegi").hide();
+
+            let judul = "Klik Tombol";
+            
+
+            $(".persegi").click(function(){
+                $("#hitungluassegi3").hide(500);
+                $("#hitungluaspersegi").show(500);
+                judul = "Hitung Luas Persegi";
+                $("h3").html(judul);
+            });
+            $(".segi3").click(function(){
+                $("#hitungluaspersegi").hide(500);
+                $("#hitungluassegi3").show(500);
+                judul = "Hitung Luas Segitiga";
+                $("h3").html(judul);
+
+            });
+            $("h3").html(judul);
+
+            $(".cmdLP").click(function(){
+                //GET INPUT NILAI
+                let P =$(".pj").val();
+                let L =$(".lb").val();
+                //PROSES
+                let LU= P*L;
+                //OUTPUT &nbsp merupakan spasi
+                let tx = "Hasil:<br>Hitung Luas Persegi dengan Nilai Panjang "+P+" dan Lebar "+L;
+                tx += " adalah:<br>Luas = Panjang X Lebar<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                tx += "= "+P+" X "+L+"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                tx += "= "+LU+"<br>Jadi luasnya adalah "+ LU;
+                
+                $("#hasil").html(tx);
+                $("#hasil").show(1500);
+
+            });
+            $(".cmdLS").click(function(){
+                //GET INPUT NILAI
+                let A =$(".al").val();
+                let T =$(".tg").val();
+                //PROSES
+                let LU= 1/2*A*T;
+                //OUTPUT &nbsp merupakan spasi
+                let tx = "Hasil:<br>Hitung Luas Segitiga dengan Nilai Alas "+A+" dan tinggi "+T;
+                tx += " adalah:<br>Luas = 1/2 X Alas X Tinggi<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                tx += "= 1/2 X "+A+" X "+T+"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                tx += "= "+LU+"<br>Jadi luasnya adalah "+ LU;
+                
+                $("#hasil").html(tx);
+                $("#hasil").show(1500);
+
+            });
+        });
+    </script>
+</body>
+</html>

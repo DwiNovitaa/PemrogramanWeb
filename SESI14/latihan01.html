@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan JQuery 01</title>
+   <!-- <script src="jquery-3.7.0.min.js"></script> JQuery-->
+</head>
+<body>
+    
+    <h3>Judul Konten</h3>
+    <p></p>
+    <div id="isikontenid">Isi dari Konten ID</div>
+    <div class="isikontencls">Isi dari Konten Class</div>
+
+    <div id="konten1"></div>
+    <div class="konten2"></div>
+    <marquee scrollamount="50"><b></b></marquee>
+
+    <script src="jquery-3.7.0.min.js"></script> <!--diletakkan dibody agar diload lebih cepat, bisa diletakkan di head maupun body-->
+    <script>
+       //$(document).ready(function(){}); sama seperti yang dibawah, yang dibawah lebih simple
+        $(function(){
+            $("#isikontenid").html("Konten dengan jQuery pada elemen ID"); //dlm jquery id diwakilkan dgn tanda pagar
+            $(".isikontencls").html("konten dengan JQuery pada elemen CLASS");
+            $("h3").html("Latihan JQuery");
+            $("p").html("isi dari paragraph");
+
+            $("#konten1").html("Selamat Datang");
+            $(".konten2").html("Selamat Pagi");
+            $("b").html("HELLO");
+
+        });
+        //document.getElementById("isikontenid").innerHTML = "konten pengganti <b> konten ID</b>" NATIVE
+        //document.getElementsByClassName("isikontencls")
+    </script>
+    <!--<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> menggunakan jquery dengan link cdn sehingga lebih cepat-->
+</body>
+</html>
